@@ -1,5 +1,3 @@
-// SPDX-License-Identifier: GPL-3.0
-
 pragma solidity ^0.4.25;
 
 library Set {
@@ -7,15 +5,15 @@ library Set {
         mapping(int256 => bool) data;
     }
 
-    function Insert(Data storage d, int256 key) public returns (bool) {
-        if (d.data[key]) return false;
-        d.data[key] = true;
+    function Insert(Data storage self, int256 key) public returns (bool) {
+        if (self.data[key]) return false; // Key exists.
+        self.data[key] = true;
         return true;
     }
 
-    function Remove(Data storage d, int256 key) public returns (bool) {
-        if (!d.data[key]) return false;
-        d.data[key] = false;
+    function Remove(Data storage self, int256 key) public returns (bool) {
+        if (!self.data[key]) return false; // Key does not exist.
+        self.data[key] = false;
         return true;
     }
 
@@ -27,7 +25,7 @@ library Set {
 contract Main {
     Set.Data set;
 
-    function inset(int256 key) public returns (bool) {
+    function insert(int256 key) public returns (bool) {
         return Set.Insert(set, key);
     }
 
@@ -35,7 +33,7 @@ contract Main {
         return Set.Remove(set, key);
     }
 
-    function contain(int256 key) public returns (bool) {
+    function contain(int256 key) public view returns (bool) {
         return Set.Contain(set, key);
     }
 }
