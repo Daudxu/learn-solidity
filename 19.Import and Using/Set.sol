@@ -23,19 +23,3 @@ library Set {
         return self.data[key];
     }
 }
-
-contract Main {
-    Set.Data set;
-
-    function insert(int256 key) public returns (bool) {
-        return Set.Insert(set, key);
-    }
-
-    function remove(int256 key) public returns (bool) {
-        return Set.Remove(set, key);
-    }
-
-    function contain(int256 key) public view returns (bool) {
-        return Set.Contain(set, key);
-    }
-}
